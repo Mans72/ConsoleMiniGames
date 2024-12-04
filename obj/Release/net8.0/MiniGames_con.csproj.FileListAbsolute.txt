@@ -1,0 +1,14 @@
+G:\Projects\Games\MiniGames_con\bin\Release\net8.0\MiniGames_con.exe
+G:\Projects\Games\MiniGames_con\bin\Release\net8.0\MiniGames_con.deps.json
+G:\Projects\Games\MiniGames_con\bin\Release\net8.0\MiniGames_con.runtimeconfig.json
+G:\Projects\Games\MiniGames_con\bin\Release\net8.0\MiniGames_con.dll
+G:\Projects\Games\MiniGames_con\bin\Release\net8.0\MiniGames_con.pdb
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\MiniGames_con.GeneratedMSBuildEditorConfig.editorconfig
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\MiniGames_con.AssemblyInfoInputs.cache
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\MiniGames_con.AssemblyInfo.cs
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\MiniGames_con.csproj.CoreCompileInputs.cache
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\MiniGames_con.dll
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\refint\MiniGames_con.dll
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\MiniGames_con.pdb
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\MiniGames_con.genruntimeconfig.cache
+G:\Projects\Games\MiniGames_con\obj\Release\net8.0\ref\MiniGames_con.dll
