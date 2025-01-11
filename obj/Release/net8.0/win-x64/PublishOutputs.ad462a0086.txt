@@ -1,2 +1,0 @@
-G:\Projects\Games\MiniGames_con\bin\publish\MiniGames_con.pdb
-G:\Projects\Games\MiniGames_con\bin\publish\MiniGames_con.exe
