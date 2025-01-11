@@ -1,8 +1,9 @@
-﻿
-namespace MiniGames_con {
+﻿using ConsoleMiniGames.Types;
+
+namespace ConsoleMiniGames {
 
 	internal static partial class Fifteens {
-		private static readonly object consoleLock = new object();
+		private static readonly object consoleLock = new();
 
 		public static void Start() {
 
@@ -49,15 +50,15 @@ namespace MiniGames_con {
 					do {
 						(pos, button) = MouseClickHandler.GetMouse();
 
-						if (pos.Y >= 2 && pos.Y <= 4) y = 0;
-						else if (pos.Y >= 6 && pos.Y <= 8) y = 1;
-						else if (pos.Y >= 10 && pos.Y <= 12) y = 2;
-						else if (pos.Y >= 14 && pos.Y <= 16) y = 3;
+						if (pos.Y is >= 2 and <= 4) y = 0;
+						else if (pos.Y is >= 6 and <= 8) y = 1;
+						else if (pos.Y is >= 10 and <= 12) y = 2;
+						else if (pos.Y is >= 14 and <= 16) y = 3;
 						else y = -1;
-						if (pos.X >= 17 && pos.X <= 22) x = 0;
-						else if (pos.X >= 25 && pos.X <= 30) x = 1;
-						else if (pos.X >= 33 && pos.X <= 38) x = 2;
-						else if (pos.X >= 41 && pos.X <= 46) x = 3;
+						if (pos.X is >= 17 and <= 22) x = 0;
+						else if (pos.X is >= 25 and <= 30) x = 1;
+						else if (pos.X is >= 33 and <= 38) x = 2;
+						else if (pos.X is >= 41 and <= 46) x = 3;
 						else x = -1;
 
 						if (x != -1 && y != -1) {

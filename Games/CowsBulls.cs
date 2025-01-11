@@ -1,5 +1,7 @@
-﻿// 5040
-namespace MiniGames_con {
+﻿using ConsoleMiniGames.Types;
+
+// 5040
+namespace ConsoleMiniGames {
 
 	internal static partial class CowsBulls {
 		private static readonly List<string> options = [
@@ -21,11 +23,11 @@ namespace MiniGames_con {
 				do {
 					(XY pos, button) = MouseClickHandler.GetMouse();
 
-					if (pos.X >= 5 && pos.X <= 38) {
-						if (pos.Y >= 6 && pos.Y <= 8) selected = 0;
-						else if (pos.Y >= 10 && pos.Y <= 12) selected = 1;
-						else if (pos.Y >= 14 && pos.Y <= 16) selected = 2;
-						else if (pos.Y >= 18 && pos.Y <= 20) selected = 3;
+					if (pos.X is >= 5 and <= 38) {
+						if (pos.Y is >= 6 and <= 8) selected = 0;
+						else if (pos.Y is >= 10 and <= 12) selected = 1;
+						else if (pos.Y is >= 14 and <= 16) selected = 2;
+						else if (pos.Y is >= 18 and <= 20) selected = 3;
 						else selected = -1;
 					}
 					else selected = -1;
@@ -42,7 +44,7 @@ namespace MiniGames_con {
 
 				} while (selected == -1 || button != MouseButton.LeftButton);
 
-				Game game = new Game();
+				Game game = new();
 				switch (selected) {
 					case 0:
 						game.Start();
@@ -124,7 +126,7 @@ namespace MiniGames_con {
 						input = vars[rand.Next(vars.Count)];
 						tryes++;
 					}
-					catch (System.ArgumentOutOfRangeException) {
+					catch (ArgumentOutOfRangeException) {
 						RenderWin(tryes, "You are deceiving me!");
 						tryes = 0;
 						break;

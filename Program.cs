@@ -1,7 +1,7 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using ConsoleMiniGames.Types;
 
-namespace MiniGames_con {
+namespace ConsoleMiniGames {
+
 	internal partial class Program {
 		private static readonly List<string> games = [
 			"Sea Battle",//		+
@@ -30,14 +30,14 @@ namespace MiniGames_con {
 				do {
 					(pos, button) = MouseClickHandler.GetMouse();
 
-					if (pos.Y >= 5 && pos.Y <= 7) y = 0;
-					else if (pos.Y >= 9 && pos.Y <= 11) y = 1;
-					else if (pos.Y >= 13 && pos.Y <= 15) y = 2;
+					if (pos.Y is >= 5 and <= 7) y = 0;
+					else if (pos.Y is >= 9 and <= 11) y = 1;
+					else if (pos.Y is >= 13 and <= 15) y = 2;
 					else y = -1;
 
-					if (pos.X >= 2 && pos.X <= 17) x = 0;
-					else if (pos.X >= 20 && pos.X <= 35) x = 1;
-					else if (pos.X >= 38 && pos.X <= 53) x = 2;
+					if (pos.X is >= 2 and <= 17) x = 0;
+					else if (pos.X is >= 20 and <= 35) x = 1;
+					else if (pos.X is >= 38 and <= 53) x = 2;
 					else x = -1;
 
 					if (x != -1 && y != -1) {

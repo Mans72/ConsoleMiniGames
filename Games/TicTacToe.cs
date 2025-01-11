@@ -1,5 +1,6 @@
-﻿
-namespace MiniGames_con {
+﻿using ConsoleMiniGames.Types;
+
+namespace ConsoleMiniGames {
 
 	internal static partial class TicTacToe {
 		private static int wins = 0;
@@ -136,7 +137,7 @@ namespace MiniGames_con {
 			}
 
 			private static bool IsValidPos(ref XY pos) {
-				if (pos.Y < 2 || pos.Y > 18 || pos.Y == 7 || pos.Y == 13) return false;
+				if (pos.Y is < 2 or > 18 or 7 or 13) return false;
 				if (pos.X < 17 + 4 || pos.X > 17 + 37 || (pos.X - 17) / 2 == 7 || (pos.X - 17) / 2 == 13) return false;
 				pos.Y /= 7; pos.X -= 17; pos.X /= 14;
 				(pos.X, pos.Y) = (pos.Y, pos.X);
@@ -157,10 +158,7 @@ namespace MiniGames_con {
 			}
 
 			private XY TryBlockPlayer(Board board) {
-				if (Symbol == 'X')
-					return TryCompleteLine(board, 'O');
-				else
-					return TryCompleteLine(board, 'X');
+				return Symbol == 'X' ? TryCompleteLine(board, 'O') : TryCompleteLine(board, 'X');
 			}
 			private static XY TryCompleteLine(Board board, char symbol) {
 				for (int i = 0; i < 3; i++) {

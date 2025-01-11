@@ -1,5 +1,6 @@
-﻿
-namespace MiniGames_con {
+﻿using ConsoleMiniGames.Types;
+
+namespace ConsoleMiniGames {
 
 	internal static partial class SeaBattle {
 		private const bool human = true;
@@ -235,9 +236,9 @@ namespace MiniGames_con {
 						Program.ReturnToMenu = true;
 						throw new ReturnToMenu();
 					}
-					else if (pos.Y >= 25 && pos.Y <= 27) {
-						if (pos.X >= 47 && pos.X <= 60) selected = 0;
-						else if (pos.X >= 67 && pos.X <= 80) selected = 1;
+					else if (pos.Y is >= 25 and <= 27) {
+						if (pos.X is >= 47 and <= 60) selected = 0;
+						else if (pos.X is >= 67 and <= 80) selected = 1;
 						else selected = -1;
 					}
 					else selected = -1;
