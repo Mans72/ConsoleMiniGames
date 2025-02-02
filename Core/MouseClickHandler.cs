@@ -91,6 +91,20 @@ namespace ConsoleMiniGames {
 				}
 			}
 		}
+		internal static MouseClick HandleMouseClick() {
+			//EnableMouseInput();
+			while (true) {
+				ReadConsoleInput(consoleHandle, out INPUT_RECORD record, 1, out uint eventsRead);
+
+				if (eventsRead > 0 && record.EventType == MOUSE_EVENT && record.MouseEvent.dwButtonState != 0x0000 && record.MouseEvent.dwEventFlags == 0) {
+					XY position = new(record.MouseEvent.dwMousePosition.X, record.MouseEvent.dwMousePosition.Y);
+					if (record.MouseEvent.dwButtonState == 0x0001) return new(position, MouseButton.LeftButton);
+					else if (record.MouseEvent.dwButtonState == 0x0002) return new(position, MouseButton.RightButton);
+					else if (record.MouseEvent.dwButtonState == 0x0004) return new(position, MouseButton.MiddleButton);
+				}
+			}
+		}
+
 		internal static (XY, MouseButton) GetMouse() {
 			while (true) {
 				ReadConsoleInput(consoleHandle, out INPUT_RECORD record, 1, out uint eventsRead);
@@ -102,6 +116,20 @@ namespace ConsoleMiniGames {
 						else if (record.MouseEvent.dwButtonState == 0x0004) return (position, MouseButton.MiddleButton);
 					}
 					return (position, MouseButton.NoButton);
+				}
+			}
+		}
+		internal static MouseClick HandleMouse() {
+			while (true) {
+				ReadConsoleInput(consoleHandle, out INPUT_RECORD record, 1, out uint eventsRead);
+				if (eventsRead > 0 && record.EventType == MOUSE_EVENT) {
+					XY position = new(record.MouseEvent.dwMousePosition.X, record.MouseEvent.dwMousePosition.Y);
+					if (record.MouseEvent.dwEventFlags == 0) {
+						if (record.MouseEvent.dwButtonState == 0x0001) return new(position, MouseButton.LeftButton);
+						else if (record.MouseEvent.dwButtonState == 0x0002) return new(position, MouseButton.RightButton);
+						else if (record.MouseEvent.dwButtonState == 0x0004) return new(position, MouseButton.MiddleButton);
+					}
+					return new(position, MouseButton.NoButton);
 				}
 			}
 		}

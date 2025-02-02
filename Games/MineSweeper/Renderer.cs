@@ -1,4 +1,4 @@
-﻿namespace ConsoleMiniGames {
+﻿namespace ConsoleMiniGames.Games.MineSweeper {
 
 	internal static partial class MineSweeper {
 		private static readonly int boxX = 7;

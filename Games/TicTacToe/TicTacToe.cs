@@ -1,6 +1,6 @@
 ﻿using ConsoleMiniGames.Types;
 
-namespace ConsoleMiniGames {
+namespace ConsoleMiniGames.Games.TicTacToe {
 
 	internal static partial class TicTacToe {
 		private static int wins = 0;

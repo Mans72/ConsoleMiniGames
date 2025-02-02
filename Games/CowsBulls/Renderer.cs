@@ -1,6 +1,6 @@
 ﻿using ConsoleMiniGames.Types;
 
-namespace ConsoleMiniGames {
+namespace ConsoleMiniGames.Games.CowsBulls {
 
 	internal static partial class CowsBulls {
 		private static readonly int WindowHeight = 25;

@@ -1,6 +1,6 @@
 ﻿using ConsoleMiniGames.Types;
 
-namespace ConsoleMiniGames {
+namespace ConsoleMiniGames.Games.SeaBattle {
 
 	internal static partial class SeaBattle {
 		private const bool human = true;

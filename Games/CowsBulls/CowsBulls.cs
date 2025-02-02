@@ -1,7 +1,7 @@
 ﻿using ConsoleMiniGames.Types;
 
 // 5040
-namespace ConsoleMiniGames {
+namespace ConsoleMiniGames.Games.CowsBulls {
 
 	internal static partial class CowsBulls {
 		private static readonly List<string> options = [

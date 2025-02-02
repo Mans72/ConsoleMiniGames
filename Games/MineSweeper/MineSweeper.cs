@@ -1,6 +1,6 @@
 ﻿using ConsoleMiniGames.Types;
 
-namespace ConsoleMiniGames {
+namespace ConsoleMiniGames.Games.MineSweeper {
 
 	internal static partial class MineSweeper {
 		private static Difficulty Difficulty { get; set; } = Difficulty.Easy;

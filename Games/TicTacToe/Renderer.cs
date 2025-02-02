@@ -1,4 +1,4 @@
-﻿namespace ConsoleMiniGames {
+﻿namespace ConsoleMiniGames.Games.TicTacToe {
 
 	internal static partial class TicTacToe {
 		private const int size = 21;

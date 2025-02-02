@@ -1,11 +1,11 @@
-﻿namespace ConsoleMiniGames {
+﻿namespace ConsoleMiniGames.Games.Fifteens {
 
-	internal static partial class Fifteens {
+	internal static class Renderer {
 		private static readonly int WindowHeight = 19;
 		private static readonly int WindowWidth = 51;
-		private const int sidebar = 13;
+		public const int sidebar = 13;
 
-		private static void Initialization() {
+		public static void Initialization() {
 			Console.Title = "Fifteens";
 			Console.CursorVisible = false;
 			Console.SetWindowSize(WindowWidth, WindowHeight);
@@ -19,25 +19,25 @@
 		}
 
 
-		private static void RenderBoard(Board b) {
+		public static void RenderBoard(Board b) {
 			for (int i = 0; i < 4; i++)
 				for (int j = 0; j < 4; j++)
 					RenderElement(b, false, i, j);
 		}
-		private static void RenderOutline() {
+		public static void RenderOutline() {
 			for (int i = 0; i < WindowHeight; i++) {
 				Console.SetCursorPosition(sidebar, i);
 				for (int j = 0; j < WindowHeight; j++) {
-					Console.BackgroundColor = (i == 0 || i == WindowHeight - 1 || j == 0 || j == WindowHeight - 1) ? ConsoleColor.Gray : ConsoleColor.Black;
+					Console.BackgroundColor = i == 0 || i == WindowHeight - 1 || j == 0 || j == WindowHeight - 1 ? ConsoleColor.Gray : ConsoleColor.Black;
 					Console.Write("  ");
 				}
 			}
 			Console.ResetColor();
 		}
-		private static void RenderSidebar() {
+		public static void RenderSidebar() {
 			for (int i = 0; i < WindowHeight; i++) {
 				Console.SetCursorPosition(0, i);
-				if (i is < 5 or > 11) 
+				if (i is < 5 or > 11)
 					Sources.SetColor(ConsoleColor.DarkGray, ConsoleColor.Black);
 				else
 					Sources.SetColor(ConsoleColor.Gray, ConsoleColor.Black);
@@ -48,13 +48,13 @@
 			}
 			Console.ResetColor();
 		}
-		private static void RenderTime(int seconds) {
+		public static void RenderTime(int seconds) {
 			Sources.SetColor(ConsoleColor.Gray, ConsoleColor.Black);
 			Console.SetCursorPosition(0, 9);
 			Console.Write(Sources.CentereString(Sources.FormatTime(seconds), sidebar));
 			Console.ResetColor();
 		}
-		private static void RenderEndMessage() {
+		public static void RenderEndMessage() {
 			Console.BackgroundColor = ConsoleColor.DarkGray;
 			for (int i = 0; i < 7; i++) {
 				Console.SetCursorPosition(0, WindowHeight - 7 + i);
@@ -66,7 +66,7 @@
 			Console.ResetColor();
 		}
 
-		private static void RenderElement(Board b, bool C, int y, int x) {
+		public static void RenderElement(Board b, bool C, int y, int x) {
 			int N = b.Grid[y, x];
 			bool M = b.IsMoveable(y, x);
 			x = x * 8 + sidebar + 4;
