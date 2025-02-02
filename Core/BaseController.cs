@@ -8,7 +8,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleMiniGames {
 
-	internal abstract class BaseController {
+	internal interface IBaseController {
+		public void Start();
+	}
+
+	internal abstract class BaseController<T> : IBaseController where T : BaseView {
+
+		protected abstract T View { get; set; }
 
 		//public delegate void SelectionChangedEventHandler(object? sender, string e);
 		//public event SelectionChangedEventHandler? SelectionChanged;
@@ -23,5 +29,7 @@ namespace ConsoleMiniGames {
 		public void OnUnselection([CallerMemberName] string propertyName = "") {
 			ElementUnselected?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
+
+		public abstract void Start();
 	}
 }
