@@ -8,7 +8,9 @@ using ConsoleMiniGames.Games;
 
 namespace ConsoleMiniGames.MainMenu {
 
-	internal class MainMenu : BaseController {
+	internal class MainMenu : BaseController<MainWindow> {
+		protected override MainWindow View { get; set; }
+
 		public static readonly string[] Games = [
 			"Sea Battle",	// +
 			"Minesweeper",	// +
@@ -19,26 +21,31 @@ namespace ConsoleMiniGames.MainMenu {
 			"Snake (Soon)",	// 
 		];
 
-		private delegate void StartGame();
-		internal static bool ReturnToMenu = false;
+		public static bool ReturnToMenu = false;
 
 		private int selected = -1;
-		public int NewSelected {
+		public int Selected {
 			get => selected;
 			private set {
 				if (selected != value && value < Games.Length) {
 					if (selected != -1)
-						OnUnselection(nameof(NewSelected));
+						OnUnselection(nameof(Selected));
 					selected = value;
 					if (selected != -1)
-						OnSelection(nameof(NewSelected));
+						OnSelection(nameof(Selected));
 				}
 			}
 		}
 
-		public void Start() {
+		public MainMenu() {
+			View = new MainWindow();
+			ElementSelected += View.RenderSelected;
+			ElementUnselected += View.RenderUnselected;
+		}
+
+		public override void Start() {
 			while (true) {
-				int x = -1, y = -1;
+				int x, y;
 				MouseClick mouse;
 
 				do {
@@ -54,43 +61,27 @@ namespace ConsoleMiniGames.MainMenu {
 					else if (mouse.PosX is >= 38 and <= 53) x = 2;
 					else x = -1;
 
-					if (x == -1 || y == -1) NewSelected = -1;
-					else NewSelected = y * 3 + x;
+					if (x == -1 || y == -1) Selected = -1;
+					else Selected = y * 3 + x;
 
-					//if (x != -1 && y != -1) {
-					//	NewSelected = y * 3 + x;
-					//	if (NewSelected >= Games.Length) NewSelected = -1;
+				} while (Selected == -1 || mouse.Button != MouseButton.LeftButton);
 
-					//	if (selected != NewSelected && NewSelected != -1)
-					//		RenderSelected(NewSelected);
 
-					//	selected = NewSelected;
-					//}
-					//else NewSelected = -1;
-
-					//if (selected != NewSelected && selected != -1) {
-					//	RenderUnSelected(selected);
-					//	selected = NewSelected;
-					//}
-
-				} while (NewSelected == -1 || mouse.Button != MouseButton.LeftButton);
-
-				StartGame start = NewSelected switch {
-					0 => ConsoleMiniGames.Games.SeaBattle.SeaBattle.Start,
-					1 => ConsoleMiniGames.Games.MineSweeper.MineSweeper.Start,
-					2 => ConsoleMiniGames.Games.TicTacToe.TicTacToe.Start,
-					3 => ConsoleMiniGames.Games.Fifteens.Fifteens.Start,
-					4 => ConsoleMiniGames.Games.CowsBulls.CowsBulls.Start,
-					_ => () => { }
-					,
+				IBaseController game = Selected switch {
+					0 => new Games.SeaBattle.SeaBattle(),
+					1 => new Games.MineSweeper.MineSweeper(),
+					2 => new Games.TicTacToe.TicTacToe(),
+					3 => new Games.Fifteens.Fifteens(),
+					4 => new Games.CowsBulls.CowsBulls(),
+					_ => new(),
 				};
 
 				try {
-					start();
+					game.Start();
 				}
 				catch (ReturnToMenu) { }
 
-				NewSelected = -1;
+				Selected = -1;
 				ReturnToMenu = false; // Сбрасываем флаг для следующего выбора игры
 			}
 		}

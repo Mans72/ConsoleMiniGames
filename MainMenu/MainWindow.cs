@@ -7,19 +7,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleMiniGames.MainMenu {
 
-	internal class MainWindow : BaseView<MainMenu> {
-		protected override MainMenu Context { get; set; }
+	internal class MainWindow : BaseView {
 
 		public MainWindow() {
-			Context = new MainMenu();
-			Context.ElementSelected += RenderSelected;
-			Context.ElementUnselected += RenderUnselected;
-
 			Title = "Console Mini Games";
 			windowHeight = 4 * (1 + (MainMenu.Games.Length + 2) / 3) + 1;
 			windowWidth = 56;
 			Initialization();
-			Context.Start();
 		}
 
 
@@ -37,7 +31,6 @@ namespace ConsoleMiniGames.MainMenu {
 			for (int g = 0; g < MainMenu.Games.Length; g++) {
 				for (int i = 0; i < 3; i++) {
 					Console.SetCursorPosition(2 + g % 3 * 18, 5 + g / 3 * 4 + i);
-					//Console.Write(i == 1 ? Sources.СentereString(MainMenu.Games[g], 16) : "                ");
 					Console.Write(i switch {
 						0 => "╔══════════════╗",
 						1 => $"║{Sources.CentereString(MainMenu.Games[g], 14)}║",
@@ -50,16 +43,15 @@ namespace ConsoleMiniGames.MainMenu {
 			Console.ResetColor();
 		}
 
-		private void RenderSelected(object? sender, PropertyChangedEventArgs e) {
-			if (e.PropertyName == nameof(Context.NewSelected)) {
+		public void RenderSelected(object? sender, PropertyChangedEventArgs e) {
+			if (sender is MainMenu menu && e.PropertyName == nameof(menu.Selected)) {
 				Console.BackgroundColor = ConsoleColor.DarkGray;
 				Console.ForegroundColor = ConsoleColor.Gray;
 				for (int i = 0; i < 3; i++) {
-					Console.SetCursorPosition(2 + Context.NewSelected % 3 * 18, 5 + Context.NewSelected / 3 * 4 + i);
-					//Console.Write(i == 1 ? Sources.СentereString(MainMenu.Games[g], 16) : "                ");
+					Console.SetCursorPosition(2 + menu.Selected % 3 * 18, 5 + menu.Selected / 3 * 4 + i);
 					Console.Write(i switch {
 						0 => "╔══════════════╗",
-						1 => $"║{Sources.CentereString(MainMenu.Games[Context.NewSelected], 14)}║",
+						1 => $"║{Sources.CentereString(MainMenu.Games[menu.Selected], 14)}║",
 						2 => "╚══════════════╝",
 					});
 				}
@@ -67,16 +59,15 @@ namespace ConsoleMiniGames.MainMenu {
 			}
 		}
 
-		private void RenderUnselected(object? sender, PropertyChangedEventArgs e) {
-			if (e.PropertyName == nameof(Context.NewSelected)) {
-				Console.BackgroundColor = ConsoleColor.Gray;
+		public void RenderUnselected(object? sender, PropertyChangedEventArgs e) {
+			if (sender is MainMenu menu && e.PropertyName == nameof(menu.Selected)) {
+					Console.BackgroundColor = ConsoleColor.Gray;
 				Console.ForegroundColor = ConsoleColor.Black;
 				for (int i = 0; i < 3; i++) {
-					Console.SetCursorPosition(2 + Context.NewSelected % 3 * 18, 5 + Context.NewSelected / 3 * 4 + i);
-					//Console.Write(i == 1 ? Sources.СentereString(MainMenu.Games[g], 16) : "                ");
+					Console.SetCursorPosition(2 + menu.Selected % 3 * 18, 5 + menu.Selected / 3 * 4 + i);
 					Console.Write(i switch {
 						0 => "╔══════════════╗",
-						1 => $"║{Sources.CentereString(MainMenu.Games[Context.NewSelected], 14)}║",
+						1 => $"║{Sources.CentereString(MainMenu.Games[menu.Selected], 14)}║",
 						2 => "╚══════════════╝",
 					});
 				}
