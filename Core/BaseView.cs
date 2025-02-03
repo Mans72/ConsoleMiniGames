@@ -11,6 +11,8 @@ namespace ConsoleMiniGames {
 		protected int windowHeight;
 		protected int windowWidth;
 
+		protected readonly object consoleLock = new();
+
 		protected void ConfigureWindow() {
 			Console.Title = Title;
 			Console.CursorVisible = false;
